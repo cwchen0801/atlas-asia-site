@@ -128,66 +128,6 @@
   .sig .c{color:var(--ink-2);font-size:clamp(12px,1.35vw,14.5px);margin-top:4px}
   .whynow .note{font-size:11px;color:var(--muted);margin-top:8px}
 
-  /* ── Highlights ── */
-  .highlights{background:var(--cream);padding:clamp(72px,12vh,130px) 0;text-align:center}
-  .hl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.6vw,28px);
-    margin-top:clamp(34px,6vh,56px);text-align:left}
-  @media(max-width:760px){.hl-grid{grid-template-columns:1fr}}
-  .hl{
-    background:#fbf8f1;border-top:1px solid var(--gold);
-    padding:clamp(24px,3vw,38px);
-  }
-  .hl .no{font-family:var(--disp);font-weight:400;color:var(--gold);font-size:clamp(30px,3.6vw,44px);line-height:1}
-  .hl h3{font-family:var(--serif);font-weight:700;color:var(--ink);font-size:clamp(17px,1.9vw,22px);margin-top:14px}
-  .hl p{color:var(--ink-2);font-size:clamp(12.5px,1.35vw,15px);margin-top:8px}
-
-  /* ── 數字（深色帶） ── */
-  .numbers{background:var(--dark);color:#fff;padding:clamp(72px,12vh,130px) 0;text-align:center;
-    position:relative;overflow:hidden}
-  .numbers::before{
-    content:"績";position:absolute;right:-30px;top:-40px;
-    font-family:var(--serif);font-weight:900;font-size:clamp(180px,26vw,320px);
-    color:rgba(201,164,92,.06);line-height:1;
-  }
-  .numbers .eyebrow{color:var(--gold)}
-  .numbers h2.sec{color:#fff}
-  .num-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,3vw,40px);
-    margin-top:clamp(38px,6vh,60px)}
-  @media(max-width:860px){.num-grid{grid-template-columns:repeat(2,1fr)}}
-  .num .n{
-    font-family:var(--serif);font-weight:900;line-height:1.1;
-    font-size:clamp(38px,5.6vw,64px);color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap;
-  }
-  .num .n small{font-size:.46em;font-weight:700}
-  .num .t{margin-top:10px;color:#b9bec7;font-size:clamp(11.5px,1.25vw,14px);letter-spacing:.08em}
-  .num-tags{margin-top:clamp(34px,5vh,50px);display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-  .num-tags span{
-    font-size:clamp(11px,1.2vw,13px);color:#d7dbe1;border:1px solid rgba(201,164,92,.5);
-    border-radius:999px;padding:6px 18px;letter-spacing:.06em;
-  }
-  .num-tags b{color:var(--gold);font-weight:700}
-  .numbers .note{font-size:11px;color:#7d838d;margin-top:22px}
-
-  /* ── 禮遇（宿） ── */
-  .stay{background:#fbf8f1;padding:clamp(72px,12vh,130px) 0;position:relative;overflow:hidden}
-  .stay::before{
-    content:"宿";position:absolute;left:-20px;bottom:-70px;
-    font-family:var(--serif);font-weight:900;font-size:clamp(200px,30vw,360px);
-    color:rgba(201,164,92,.09);line-height:1;
-  }
-  .stay-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,80px);align-items:center;position:relative;z-index:2}
-  @media(max-width:860px){.stay-grid{grid-template-columns:1fr}}
-  .stay .lede{font-family:var(--serif);font-weight:700;color:var(--ink);font-size:clamp(18px,2.3vw,26px);line-height:1.9}
-  .stay .lede em{font-style:normal;color:var(--gold-deep)}
-  .stay p.body{color:var(--ink-2);font-size:clamp(13px,1.4vw,15.5px);margin-top:16px}
-  .perk-list{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,1.8vw,20px)}
-  @media(max-width:560px){.perk-list{grid-template-columns:1fr}}
-  .pk{background:var(--cream);border:1px solid var(--hairline);padding:clamp(16px,2vw,24px);display:flex;gap:14px;align-items:flex-start}
-  .pk .ico{font-size:clamp(20px,2.4vw,26px);line-height:1.4}
-  .pk .t{font-family:var(--serif);font-weight:700;color:var(--ink);font-size:clamp(14px,1.5vw,17px)}
-  .pk .c{color:var(--ink-2);font-size:clamp(11.5px,1.25vw,13.5px);margin-top:2px}
-  .stay .note{font-size:11px;color:var(--muted);margin-top:14px}
-
   /* ── RSVP ── */
   .rsvp{
     position:relative;background:var(--dark) url('assets/hero.jpg') center 65%/cover no-repeat;
@@ -242,17 +182,17 @@
 <div class="hero">
   <div class="hero-inner">
     <div class="disp reveal in">TOKYO</div>
-    <div class="invite">僅限受邀貴賓</div>
+    <div class="invite">開啟台日資產新視野</div>
     <h1>台日不動產<br>替代資產的機遇</h1>
     <div class="rose">當全球聰明錢湧入日本，您的資產跟上了嗎？</div>
-    <p class="desc">跨境佈局・分散風險——由深耕台日雙市場的專業團隊，為您把關每一個標的。</p>
+    <p class="desc">日圓低點、觀光新高、國際資本進場——三件正在發生的事，值得您花三分鐘了解。</p>
     <div class="marks">
       <span>Vision <b>×</b> Asset <b>×</b> Future</span>
       <span>Taiwan <b>×</b> Japan</span>
     </div>
     <div class="hero-cta">
-      <a class="btn btn-gold" href="#rsvp">預約專屬說明 →</a>
-      <a class="btn btn-line" href="#invitation">了解更多</a>
+      <a class="btn btn-gold" href="#rsvp">免費預約諮詢 →</a>
+      <a class="btn btn-line" href="#whynow">先看市場訊號</a>
     </div>
   </div>
   <div class="scroll-hint">Scroll</div>
@@ -263,12 +203,12 @@
   <div class="wrap">
     <div class="eyebrow reveal">Invitation</div>
     <div class="state reveal">在變動加劇的時代，<br>穩健，來自更寬廣的資產視野。</div>
-    <p class="body reveal">瑞澤國際資本管理顧問攜手 SENA 星波國際地產，誠摯邀請您與專業團隊面對面，一同探索台日市場的替代資產機遇，為不確定的時代預先佈局。</p>
+    <p class="body reveal">定存追不上通膨，股市波動又讓人難以安心——其實在一水之隔的日本，正發生一場數十年一遇的資產變化。瑞澤國際資本管理顧問攜手 SENA 星波國際地產，帶您用最短的時間，看懂台日市場的替代資產機遇。</p>
   </div>
 </section>
 
 <!-- ═══ WHY NOW ═══ -->
-<section class="whynow">
+<section class="whynow" id="whynow">
   <div class="wrap why-grid">
     <div class="reveal">
       <div class="eyebrow">Why Now</div>
@@ -294,95 +234,13 @@
   </div>
 </section>
 
-<!-- ═══ HIGHLIGHTS ═══ -->
-<section class="highlights">
-  <div class="wrap">
-    <div class="eyebrow reveal">What We Do</div>
-    <h2 class="sec reveal">台日雙市場的旅宿資產專家</h2>
-    <div class="hl-grid">
-      <div class="hl reveal">
-        <div class="no">01</div>
-        <h3>日本旅館營運</h3>
-        <p>聚焦東京核心區合法持照旅館，全年營運，站上訪日觀光的結構性浪潮。</p>
-      </div>
-      <div class="hl reveal">
-        <div class="no">02</div>
-        <h3>台日民宿改裝</h3>
-        <p>從選址、設計到品牌化營運一條龍，複製自營精品民宿的高住房率方程式。</p>
-      </div>
-      <div class="hl reveal">
-        <div class="no">03</div>
-        <h3>不動產資產活化</h3>
-        <p>嚴選具價值空間的物件，快速整理、合規查核，鎖定明確去化管道。</p>
-      </div>
-      <div class="hl reveal">
-        <div class="no">04</div>
-        <h3>制度化治理</h3>
-        <p>依《有限合夥法》設立登記；關聯交易書面核准、季報制度、獨立會計師年審。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ NUMBERS ═══ -->
-<section class="numbers">
-  <div class="wrap">
-    <div class="eyebrow reveal">Track Record</div>
-    <h2 class="sec reveal">不是紙上談兵，是十年實戰</h2>
-    <div class="num-grid">
-      <div class="num reveal">
-        <div class="n"><span class="count" data-to="8">0</span><small> 間</small></div>
-        <div class="t">日本旅館交易經驗</div>
-      </div>
-      <div class="num reveal">
-        <div class="n"><span class="count" data-to="12">0</span><small> 間</small></div>
-        <div class="t">台北自營精品民宿</div>
-      </div>
-      <div class="num reveal">
-        <div class="n"><span class="count" data-to="88">0</span><small> %</small></div>
-        <div class="t">自營民宿平均住房率</div>
-      </div>
-      <div class="num reveal">
-        <div class="n"><span class="count" data-to="9.8" data-dec="1">0</span><small> 分</small></div>
-        <div class="t">Booking.com 旅客評分</div>
-      </div>
-    </div>
-    <div class="num-tags reveal">
-      <span>新加坡<b>家族辦公室</b>背景</span>
-      <span>台日<b>跨境旅宿</b>實戰</span>
-      <span>離岸基金<b>跨境架構</b>經驗</span>
-    </div>
-    <div class="note">歷史實績不代表未來表現；團隊背景於專屬說明中介紹</div>
-  </div>
-</section>
-
-<!-- ═══ 禮遇 ═══ -->
-<section class="stay">
-  <div class="wrap stay-grid">
-    <div class="reveal">
-      <div class="eyebrow">Partner Privileges</div>
-      <h2 class="sec">成為合夥人，<br>日本就是<span style="color:var(--gold-deep)">您的後院</span></h2>
-      <p class="body">合夥人專屬年度禮遇——用旅人的角度，親身體驗自家旅宿資產的營運品質。</p>
-    </div>
-    <div>
-      <div class="perk-list">
-        <div class="pk reveal"><div class="ico">🏨</div><div><div class="t">東京旅館住宿</div><div class="c">親身體驗自家旅宿</div></div></div>
-        <div class="pk reveal"><div class="ico">🚐</div><div><div class="t">日本專屬包車</div><div class="c">東京／大阪專車服務</div></div></div>
-        <div class="pk reveal"><div class="ico">♨️</div><div><div class="t">北投溫泉渡假村</div><div class="c">房內即享溫泉</div></div></div>
-        <div class="pk reveal"><div class="ico">🏡</div><div><div class="t">宜蘭包棟民宿</div><div class="c">精品民宿整棟包場</div></div></div>
-      </div>
-      <div class="note reveal">合夥人專屬年度禮遇，詳以合夥文件為準</div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══ RSVP ═══ -->
 <section class="rsvp" id="rsvp">
   <div class="wrap z">
-    <div class="eyebrow reveal">By Invitation</div>
+    <div class="eyebrow reveal">Free Consultation</div>
     <h2 class="reveal">好的機會，<em>值得當面聊</em></h2>
-    <div class="line reveal">名額有限，僅開放特定人參與｜請洽您的專屬顧問，安排一對一說明</div>
-    <a class="btn btn-gold reveal" href="mailto:info@sena-home.com?subject=預約專屬說明">預約專屬說明 →</a>
+    <div class="line reveal">預約 30 分鐘免費一對一諮詢，聊聊台日資產配置的可能性——無任何義務，先聊聊就好</div>
+    <a class="btn btn-gold reveal" href="mailto:info@sena-home.com?subject=預約免費諮詢">免費預約諮詢 →</a>
     <div class="brand">Atlas Asia Wealth Capital</div>
   </div>
 </section>
@@ -407,8 +265,8 @@
       </div>
     </div>
     <div class="ft-legal">
-      本頁面僅供特定人參考，不構成公開招募、要約或任何投資、財務或法律建議；歷史實績不代表未來表現，詳情以正式文件為準，並建議諮詢獨立專業顧問。<br>
-      <span class="gold">CONFIDENTIAL</span>｜© 2026 Atlas Asia Wealth Capital × SENA International Real Estate. All rights reserved.
+      本頁面所載市場資訊僅供參考，不構成任何投資、財務或法律建議；所有投資皆具風險，過往表現不代表未來績效，資產價格與匯率均可能波動，決策前請諮詢獨立專業顧問。<br>
+      © 2026 Atlas Asia Wealth Capital × SENA International Real Estate. All rights reserved.
     </div>
   </div>
 </footer>
@@ -420,25 +278,6 @@
   },{threshold:.18});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
-  function countUp(el){
-    var to = parseFloat(el.dataset.to), dec = parseInt(el.dataset.dec||'0',10);
-    var dur = 1300, t0 = null;
-    function tick(t){
-      if(!t0) t0 = t;
-      var p = Math.min((t - t0)/dur, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = (to*eased).toFixed(dec);
-      if(p < 1) requestAnimationFrame(tick);
-      else el.textContent = to.toFixed(dec);
-    }
-    requestAnimationFrame(tick);
-  }
-  var cio = new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if(e.isIntersecting){ countUp(e.target); cio.unobserve(e.target); }
-    });
-  },{threshold:.5});
-  document.querySelectorAll('.count').forEach(function(el){ cio.observe(el); });
 })();
 </script>
 </body>

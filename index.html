@@ -10,275 +10,181 @@
 <style>
   :root{
     --cream:#f5f0e6;
-    --cream-2:#efe8da;
     --ink:#2b2f36;
-    --ink-2:#5a5f68;
-    --muted:#9aa0a9;
     --gold:#c9a45c;
     --gold-deep:#a8863c;
-    --rose:#c98f9f;
+    --rose:#d29aa9;
     --dark:#171c24;
-    --dark-2:#1f2630;
-    --hairline:rgba(43,47,54,.12);
     --serif:"Noto Serif TC","PMingLiU",Georgia,serif;
     --disp:"Cormorant Garamond",Georgia,serif;
     --sans:"Segoe UI","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--cream);color:var(--ink);font-family:var(--sans);line-height:1.9}
-
-  .wrap{max-width:1140px;margin:0 auto;padding:0 clamp(22px,5vw,56px)}
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease}
-  .reveal.in{opacity:1;transform:none}
-
-  .eyebrow{
-    font-family:var(--disp);letter-spacing:.42em;text-transform:uppercase;
-    font-size:clamp(11px,1.2vw,14px);color:var(--gold-deep);margin-bottom:16px;
-  }
-  h2.sec{
-    font-family:var(--serif);font-weight:900;color:var(--ink);
-    font-size:clamp(26px,3.6vw,44px);line-height:1.5;
+  body{
+    background:#0d1015;
+    background-image:radial-gradient(circle at 20% 10%, rgba(201,164,92,.06) 0, transparent 45%),
+                     radial-gradient(circle at 80% 90%, rgba(201,164,92,.06) 0, transparent 45%);
+    font-family:var(--sans);color:#fff;line-height:1.7;
+    display:flex;justify-content:center;
+    padding:clamp(10px,2.5vw,36px) clamp(8px,2vw,20px);
   }
 
-  /* ── 頂列 ── */
-  header{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    background:rgba(245,240,230,.94);backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--hairline);
+  /* ══ 海報畫布 ══ */
+  .poster{
+    position:relative;width:min(94vw,720px);overflow:hidden;
+    background:#0d1118 url('assets/hero.jpg') center 35%/cover no-repeat;
+    border:1px solid rgba(201,164,92,.65);
+    outline:1px solid rgba(201,164,92,.3);outline-offset:5px;
+    box-shadow:0 30px 90px rgba(0,0,0,.65);
   }
-  .topbar{
-    display:flex;align-items:center;justify-content:center;gap:18px;
-    padding:14px clamp(16px,3vw,40px);
-  }
-  .topbar .lg{font-family:var(--serif);font-weight:700;font-size:clamp(12px,1.4vw,15px);color:var(--ink);letter-spacing:.1em}
-  .topbar .x{color:var(--gold);font-family:var(--disp);font-size:14px}
-
-  /* ── Hero ── */
-  .hero{
-    position:relative;min-height:100vh;display:flex;align-items:center;
-    background:#0d1118 url('assets/hero.jpg') center 30%/cover no-repeat;
-  }
-  .hero::before{
+  .poster::before{
     content:"";position:absolute;inset:0;
-    background:linear-gradient(100deg,rgba(10,13,20,.88) 0%,rgba(10,13,20,.66) 45%,rgba(10,13,20,.3) 100%);
+    background:linear-gradient(178deg,rgba(10,13,20,.72) 0%,rgba(10,13,20,.55) 34%,rgba(10,13,20,.78) 66%,rgba(10,13,20,.94) 100%);
   }
-  .hero-inner{position:relative;z-index:2;width:100%;max-width:1140px;margin:0 auto;
-    padding:120px clamp(22px,5vw,56px) 80px}
-  .hero .disp{
+  .z{position:relative;z-index:2;padding:clamp(20px,4.6vw,36px) clamp(20px,5vw,44px) clamp(18px,4vw,30px)}
+
+  /* 品牌列 */
+  .brands{
+    display:flex;align-items:center;justify-content:center;gap:12px;
+    font-family:var(--serif);font-weight:700;letter-spacing:.1em;
+    font-size:clamp(10.5px,1.9vw,13.5px);color:#e8e2d4;
+    padding-bottom:clamp(12px,2.4vw,18px);border-bottom:1px solid rgba(201,164,92,.35);
+  }
+  .brands .x{color:var(--gold);font-family:var(--disp)}
+
+  /* 標題群 */
+  .disp{
     font-family:var(--disp);font-weight:300;color:var(--gold);
-    font-size:clamp(58px,11vw,128px);letter-spacing:.16em;line-height:1;
+    font-size:clamp(46px,10vw,84px);letter-spacing:.18em;line-height:1;
+    text-align:center;margin-top:clamp(18px,3.6vw,28px);
   }
-  .hero .invite{
-    display:flex;align-items:center;gap:14px;margin:22px 0 14px;
-    font-size:clamp(12px,1.3vw,15px);letter-spacing:.34em;color:#e8e2d4;
+  .invite{
+    display:flex;align-items:center;justify-content:center;gap:12px;
+    margin:clamp(10px,2vw,16px) 0 clamp(8px,1.6vw,12px);
+    font-size:clamp(10px,1.8vw,13px);letter-spacing:.34em;color:#e8e2d4;
   }
-  .hero .invite::before,.hero .invite::after{content:"";width:38px;height:1px;background:var(--gold)}
-  .hero h1{
-    font-family:var(--serif);font-weight:900;color:#fff;
-    font-size:clamp(32px,5.4vw,58px);line-height:1.5;letter-spacing:.04em;
+  .invite::before,.invite::after{content:"";width:32px;height:1px;background:var(--gold)}
+  h1{
+    font-family:var(--serif);font-weight:900;color:#fff;text-align:center;
+    font-size:clamp(26px,5.6vw,44px);line-height:1.45;letter-spacing:.04em;
   }
-  .hero .rose{
-    font-family:var(--serif);font-weight:600;color:var(--rose);
-    font-size:clamp(17px,2.4vw,26px);letter-spacing:.1em;margin-top:12px;
+  .rose{
+    font-family:var(--serif);font-weight:600;color:var(--rose);text-align:center;
+    font-size:clamp(13px,2.6vw,19px);letter-spacing:.08em;margin-top:clamp(8px,1.6vw,12px);
   }
-  .hero .desc{color:#c9cdd4;font-size:clamp(13px,1.5vw,16px);margin-top:22px;max-width:460px}
-  .hero .marks{
-    margin-top:26px;display:flex;gap:clamp(18px,4vw,48px);flex-wrap:wrap;
-    font-family:var(--disp);letter-spacing:.3em;text-transform:uppercase;
-    font-size:clamp(11px,1.2vw,14px);color:#b9bec7;
+
+  /* 三訊號 */
+  .sigs{margin-top:clamp(18px,3.6vw,28px);display:flex;flex-direction:column;gap:clamp(10px,2vw,14px)}
+  .sig{
+    border-left:2px solid var(--gold);padding:4px 0 4px 16px;
+    background:linear-gradient(90deg,rgba(10,13,20,.5),transparent 80%);
   }
-  .hero .marks b{color:var(--gold);font-weight:400}
-  .hero-cta{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap}
+  .sig .n{font-family:var(--serif);font-weight:900;color:#fff;font-size:clamp(16px,3.2vw,23px);line-height:1.4}
+  .sig .n em{font-style:normal;color:var(--gold)}
+  .sig .c{color:#c9cdd4;font-size:clamp(10px,1.9vw,13px)}
+
+  /* 宣言 */
+  .state{
+    margin-top:clamp(18px,3.6vw,28px);text-align:center;
+    font-family:var(--serif);font-weight:700;color:#f2eee3;
+    font-size:clamp(14px,2.8vw,20px);line-height:1.9;letter-spacing:.05em;
+  }
+  .state em{font-style:normal;color:var(--gold)}
+
+  /* CTA */
+  .cta{text-align:center;margin-top:clamp(16px,3.2vw,24px)}
   .btn{
-    display:inline-flex;align-items:center;gap:10px;text-decoration:none;
-    font-weight:700;font-size:clamp(13px,1.4vw,16px);letter-spacing:.14em;
-    padding:15px 36px;transition:.3s;
+    display:inline-block;text-decoration:none;background:var(--gold);color:#171c24;
+    font-weight:800;font-size:clamp(13px,2.6vw,17px);letter-spacing:.14em;
+    padding:clamp(12px,2.2vw,16px) clamp(34px,7vw,56px);transition:.3s;
   }
-  .btn-gold{background:var(--gold);color:#171c24}
-  .btn-gold:hover{background:#d9b877}
-  .btn-line{border:1px solid rgba(255,255,255,.55);color:#fff}
-  .btn-line:hover{border-color:var(--gold);color:var(--gold)}
-  .scroll-hint{
-    position:absolute;left:clamp(22px,5vw,56px);bottom:30px;z-index:2;
-    display:flex;align-items:center;gap:10px;
-    font-family:var(--disp);letter-spacing:.4em;font-size:11px;color:#b9bec7;text-transform:uppercase;
+  .btn:hover{background:#d9b877}
+  .cta .sub{
+    margin-top:10px;color:#c9cdd4;font-size:clamp(10px,1.9vw,13px);letter-spacing:.06em;
   }
-  .scroll-hint::before{content:"";width:2px;height:34px;background:var(--gold)}
+  .cta .marks{
+    margin-top:clamp(10px,2vw,14px);
+    font-family:var(--disp);letter-spacing:.3em;text-transform:uppercase;
+    font-size:clamp(9px,1.7vw,12px);color:#b9bec7;
+  }
+  .cta .marks b{color:var(--gold);font-weight:400}
 
-  /* ── Invitation ── */
-  .invitation{background:var(--cream);text-align:center;padding:clamp(72px,12vh,130px) 0}
-  .invitation .state{
-    font-family:var(--serif);font-weight:700;color:var(--ink);
-    font-size:clamp(20px,3vw,32px);line-height:2;max-width:640px;margin:0 auto;
+  /* 底部聯絡＋免責 */
+  .foot{
+    margin-top:clamp(16px,3.2vw,24px);padding-top:clamp(12px,2.4vw,16px);
+    border-top:1px solid rgba(201,164,92,.35);text-align:center;
   }
-  .invitation p.body{
-    max-width:620px;margin:26px auto 0;color:var(--ink-2);font-size:clamp(13px,1.45vw,16px);
+  .foot .contact{color:#c9cdd4;font-size:clamp(9.5px,1.8vw,12px);line-height:1.9}
+  .foot .contact b{color:#e8e2d4;font-weight:700}
+  .foot a{color:var(--gold);text-decoration:none}
+  .foot .legal{
+    margin-top:8px;color:#7d838d;font-size:clamp(7.5px,1.4vw,9.5px);line-height:1.8;
   }
-
-  /* ── Why now ── */
-  .whynow{background:#fbf8f1;padding:clamp(72px,12vh,130px) 0}
-  .why-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,6vw,80px);align-items:start}
-  @media(max-width:860px){.why-grid{grid-template-columns:1fr}}
-  .whynow p{color:var(--ink-2);font-size:clamp(13px,1.45vw,16px);margin-top:18px}
-  .whynow p b{color:var(--ink);border-bottom:2px solid var(--gold)}
-  .sig{border-left:2px solid var(--gold);padding:6px 0 6px 22px;margin-bottom:26px}
-  .sig .n{font-family:var(--serif);font-weight:900;color:var(--ink);font-size:clamp(22px,2.8vw,32px)}
-  .sig .n em{font-style:normal;color:var(--gold-deep)}
-  .sig .c{color:var(--ink-2);font-size:clamp(12px,1.35vw,14.5px);margin-top:4px}
-  .whynow .note{font-size:11px;color:var(--muted);margin-top:8px}
-
-  /* ── RSVP ── */
-  .rsvp{
-    position:relative;background:var(--dark) url('assets/hero.jpg') center 65%/cover no-repeat;
-    padding:clamp(80px,14vh,150px) 0;text-align:center;color:#fff;
+  .foot .brand{
+    margin-top:10px;font-family:var(--disp);letter-spacing:.4em;color:var(--gold);
+    font-size:clamp(8px,1.5vw,10px);text-transform:uppercase;
   }
-  .rsvp::before{content:"";position:absolute;inset:0;background:rgba(13,17,24,.86)}
-  .rsvp .z{position:relative;z-index:2}
-  .rsvp .eyebrow{color:var(--gold)}
-  .rsvp h2{
-    font-family:var(--serif);font-weight:900;color:#fff;
-    font-size:clamp(26px,4vw,46px);line-height:1.6;
-  }
-  .rsvp h2 em{font-style:normal;color:var(--gold)}
-  .rsvp .line{margin-top:16px;color:#c9cdd4;font-size:clamp(13px,1.5vw,16px)}
-  .rsvp .btn{margin-top:34px}
-  .rsvp .brand{
-    margin-top:38px;font-family:var(--disp);letter-spacing:.4em;color:var(--gold);
-    font-size:clamp(10px,1.2vw,13px);text-transform:uppercase;
-  }
-
-  /* ── Footer ── */
-  footer{background:#12161d;color:#9aa0a9;padding:clamp(48px,8vh,72px) 0 34px}
-  .ft-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(26px,5vw,64px)}
-  @media(max-width:760px){.ft-grid{grid-template-columns:1fr}}
-  .ft-h{
-    font-family:var(--disp);letter-spacing:.34em;text-transform:uppercase;
-    font-size:12px;color:var(--gold);margin-bottom:14px;
-  }
-  .ft-logos{font-family:var(--serif);font-weight:700;color:#e8e2d4;font-size:clamp(15px,1.7vw,19px)}
-  .ft-logos .x{color:var(--gold);margin:0 10px;font-family:var(--disp)}
-  footer p{font-size:clamp(12px,1.25vw,13.5px);line-height:2}
-  footer a{color:#c9cdd4;text-decoration:none;border-bottom:1px solid rgba(201,164,92,.4)}
-  footer a:hover{color:var(--gold)}
-  .ft-legal{
-    margin-top:clamp(30px,5vh,44px);padding-top:20px;border-top:1px solid rgba(255,255,255,.08);
-    font-size:10.5px;color:#6e747e;line-height:1.9;text-align:center;
-  }
-  .ft-legal .gold{color:var(--gold)}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="topbar">
-    <span class="lg">瑞澤國際資本管理顧問</span>
-    <span class="x">×</span>
-    <span class="lg">SENA 星波國際地產</span>
-  </div>
-</header>
+<div class="poster">
+  <div class="z">
 
-<!-- ═══ HERO ═══ -->
-<div class="hero">
-  <div class="hero-inner">
-    <div class="disp reveal in">TOKYO</div>
+    <!-- 品牌列 -->
+    <div class="brands">
+      <span>瑞澤國際資本管理顧問</span>
+      <span class="x">×</span>
+      <span>SENA 星波國際地產</span>
+    </div>
+
+    <!-- 標題群 -->
+    <div class="disp">TOKYO</div>
     <div class="invite">開啟台日資產新視野</div>
     <h1>台日不動產<br>替代資產的機遇</h1>
     <div class="rose">當全球聰明錢湧入日本，您的資產跟上了嗎？</div>
-    <p class="desc">日圓低點、觀光新高、國際資本進場——三件正在發生的事，值得您花三分鐘了解。</p>
-    <div class="marks">
-      <span>Vision <b>×</b> Asset <b>×</b> Future</span>
-      <span>Taiwan <b>×</b> Japan</span>
-    </div>
-    <div class="hero-cta">
-      <a class="btn btn-gold" href="#rsvp">免費預約諮詢 →</a>
-      <a class="btn btn-line" href="#whynow">先看市場訊號</a>
-    </div>
-  </div>
-  <div class="scroll-hint">Scroll</div>
-</div>
 
-<!-- ═══ INVITATION ═══ -->
-<section class="invitation" id="invitation">
-  <div class="wrap">
-    <div class="eyebrow reveal">Invitation</div>
-    <div class="state reveal">在變動加劇的時代，<br>穩健，來自更寬廣的資產視野。</div>
-    <p class="body reveal">定存追不上通膨，股市波動又讓人難以安心——其實在一水之隔的日本，正發生一場數十年一遇的資產變化。瑞澤國際資本管理顧問攜手 SENA 星波國際地產，帶您用最短的時間，看懂台日市場的替代資產機遇。</p>
-  </div>
-</section>
-
-<!-- ═══ WHY NOW ═══ -->
-<section class="whynow" id="whynow">
-  <div class="wrap why-grid">
-    <div class="reveal">
-      <div class="eyebrow">Why Now</div>
-      <h2 class="sec">為什麼此刻，<br>要看見台日市場？</h2>
-      <p>全球利率與匯率環境快速變動，單一市場的波動風險被放大。<b>跨境佈局、分散風險</b>，成為穩健資產配置的核心命題。</p>
-      <p>日本以其成熟法制、穩定住宿需求與旅宿型資產的復甦動能，成為台灣投資人放眼海外的重要選項；台日市場並進，讓資產在攻守之間找到平衡。</p>
-    </div>
-    <div>
-      <div class="sig reveal">
+    <!-- 三訊號 -->
+    <div class="sigs">
+      <div class="sig">
         <div class="n">日圓 <em>53 年低點</em></div>
         <div class="c">同一棟建物，比三年前便宜近三成</div>
       </div>
-      <div class="sig reveal">
-        <div class="n"><em>4,268 萬</em> 訪日旅客</div>
-        <div class="c">創歷史新高，住宿消費成長最快</div>
+      <div class="sig">
+        <div class="n"><em>4,268 萬</em> 訪日旅客創新高</div>
+        <div class="c">住宿消費成長最快</div>
       </div>
-      <div class="sig reveal">
+      <div class="sig">
         <div class="n">東京投資額 <em>全球第一</em></div>
         <div class="c">國際機構大舉佈局旅館資產</div>
       </div>
-      <div class="note reveal">公開市場數據與團隊觀察，非投資保證</div>
     </div>
-  </div>
-</section>
 
-<!-- ═══ RSVP ═══ -->
-<section class="rsvp" id="rsvp">
-  <div class="wrap z">
-    <div class="eyebrow reveal">Free Consultation</div>
-    <h2 class="reveal">好的機會，<em>值得當面聊</em></h2>
-    <div class="line reveal">預約 30 分鐘免費一對一諮詢，聊聊台日資產配置的可能性——無任何義務，先聊聊就好</div>
-    <a class="btn btn-gold reveal" href="mailto:info@sena-home.com?subject=預約免費諮詢">免費預約諮詢 →</a>
-    <div class="brand">Atlas Asia Wealth Capital</div>
-  </div>
-</section>
+    <!-- 宣言 -->
+    <div class="state">在變動加劇的時代，<br>穩健，來自<em>更寬廣的資產視野</em>。</div>
 
-<!-- ═══ FOOTER ═══ -->
-<footer>
-  <div class="wrap">
-    <div class="ft-grid">
-      <div>
-        <div class="ft-h">Hosted By</div>
-        <div class="ft-logos">瑞澤國際資本管理顧問<span class="x">×</span>SENA 星波國際地產</div>
-        <p style="margin-top:10px">跨境佈局・分散風險・掌握台日市場新機遇。</p>
+    <!-- CTA -->
+    <div class="cta">
+      <a class="btn" href="mailto:info@sena-home.com?subject=預約免費諮詢">免費預約諮詢 →</a>
+      <div class="sub">30 分鐘一對一・無任何義務，先聊聊就好</div>
+      <div class="marks">Vision <b>×</b> Asset <b>×</b> Future&nbsp;&nbsp;&nbsp;Taiwan <b>×</b> Japan</div>
+    </div>
+
+    <!-- 聯絡＋免責 -->
+    <div class="foot">
+      <div class="contact">
+        <b>星波國際地產股份有限公司</b>｜(02) 2556-6219｜<a href="mailto:info@sena-home.com">info@sena-home.com</a><br>
+        臺北市中正區懷寧街 12 號 2 樓
       </div>
-      <div>
-        <div class="ft-h">Contact</div>
-        <p>
-          星波國際地產股份有限公司<br>
-          地址：臺北市中正區懷寧街 12 號 2 樓<br>
-          電話：(02) 2556-6219<br>
-          Email：<a href="mailto:info@sena-home.com">info@sena-home.com</a>
-        </p>
+      <div class="legal">
+        本頁面所載市場資訊僅供參考，不構成任何投資、財務或法律建議；投資具風險，過往表現不代表未來績效，決策前請諮詢獨立專業顧問。<br>
+        © 2026 Atlas Asia Wealth Capital × SENA International Real Estate
       </div>
+      <div class="brand">Atlas Asia Wealth Capital</div>
     </div>
-    <div class="ft-legal">
-      本頁面所載市場資訊僅供參考，不構成任何投資、財務或法律建議；所有投資皆具風險，過往表現不代表未來績效，資產價格與匯率均可能波動，決策前請諮詢獨立專業顧問。<br>
-      © 2026 Atlas Asia Wealth Capital × SENA International Real Estate. All rights reserved.
-    </div>
+
   </div>
-</footer>
+</div>
 
-<script>
-(function(){
-  var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  },{threshold:.18});
-  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-
-})();
-</script>
 </body>
 </html>

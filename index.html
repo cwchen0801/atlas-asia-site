@@ -13,7 +13,6 @@
     --gold-soft:#e5d6ae;
     --steel:#8fa3bd;
     --paper:#ffffff;
-    --paper-2:#f5f7fa;
     --ink:#2d3b4d;
     --ink-2:#4d5b6e;
     --muted:#8a94a3;
@@ -22,492 +21,347 @@
     --sans:"Segoe UI","Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.8}
-
-  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
-  section{padding:clamp(64px,10vh,110px) 0}
-  .sec-dark{background:var(--navy);color:#fff}
-  .sec-tint{background:var(--paper-2)}
-
-  .eyebrow{
-    font-family:var(--serif);letter-spacing:.35em;font-size:clamp(11px,1vw,13px);
-    color:var(--gold-deep);text-transform:uppercase;margin-bottom:12px;
+  body{
+    background:var(--navy-deep);
+    background-image:radial-gradient(circle at 15% 10%, rgba(197,162,83,.08) 0, transparent 40%),
+                     radial-gradient(circle at 85% 90%, rgba(197,162,83,.08) 0, transparent 40%);
+    font-family:var(--sans);color:var(--ink);line-height:1.65;
+    padding:clamp(12px,3vw,40px) clamp(8px,2vw,20px);
   }
-  .sec-dark .eyebrow{color:var(--gold)}
-  h1,h2,h3{font-family:var(--serif);font-weight:700}
-  h2{font-size:clamp(26px,3.6vw,44px);line-height:1.4}
-  .sec-dark h2{color:#fff}
-  h2 .gd{color:var(--gold-deep)}
-  .sec-dark h2 .gd{color:var(--gold)}
-  .lead{font-size:clamp(15px,1.6vw,19px);color:var(--ink-2);max-width:760px;margin-top:14px}
-  .sec-dark .lead{color:#d7dee8}
 
-  .gold-rule{
-    position:relative;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));
-    width:min(300px,55%);margin:20px 0 0;border-radius:2px;
+  /* ══ 海報畫布 ══ */
+  .poster{
+    max-width:820px;margin:0 auto;background:var(--paper);
+    border:3px solid var(--gold);outline:1px solid rgba(197,162,83,.45);outline-offset:6px;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+    position:relative;overflow:hidden;
   }
-  .gold-rule::before,.gold-rule::after{
-    content:"";position:absolute;top:50%;width:9px;height:9px;background:var(--gold);
-    transform:translateY(-50%) rotate(45deg);
-  }
-  .gold-rule::before{left:-4px}
-  .gold-rule::after{right:-4px}
-  .gold-rule.center{margin-left:auto;margin-right:auto}
 
-  .grid{display:grid;gap:clamp(14px,2vw,26px)}
-  .g2{grid-template-columns:repeat(2,1fr)}
-  .g3{grid-template-columns:repeat(3,1fr)}
-  .g4{grid-template-columns:repeat(4,1fr)}
-  @media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr}}
-
-  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
   .reveal.in{opacity:1;transform:none}
 
-  .note{font-size:clamp(10px,.95vw,12px);color:var(--muted);line-height:1.6;margin-top:18px}
-  .sec-dark .note{color:var(--steel)}
+  /* ── 頂帶 ── */
+  .topbar{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:12px clamp(16px,3vw,28px);border-bottom:1px solid var(--hairline);
+  }
+  .topbar .logo{font-family:var(--serif);font-weight:700;font-size:clamp(13px,2.6vw,16px);color:var(--navy)}
+  .topbar .logo em{font-style:normal;color:var(--gold-deep)}
+  .topbar .conf{font-size:9.5px;letter-spacing:.14em;color:var(--gold-deep);border:1.5px solid var(--gold);
+    border-radius:999px;padding:2px 10px;font-weight:700;white-space:nowrap}
 
-  /* ── 導覽 ── */
-  header{
-    position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--hairline);
-  }
-  .nav{display:flex;align-items:center;justify-content:space-between;max-width:1160px;margin:0 auto;
-    padding:13px clamp(16px,3vw,40px)}
-  .logo{font-family:var(--serif);font-weight:700;font-size:clamp(15px,1.5vw,19px);color:var(--navy)}
-  .logo em{font-style:normal;color:var(--gold-deep)}
-  .nav-cta{
-    display:inline-block;text-decoration:none;background:var(--navy);color:#fff;font-weight:700;
-    font-size:clamp(12px,1.15vw,14px);padding:9px 22px;border-radius:4px;letter-spacing:.08em;transition:.25s;
-  }
-  .nav-cta:hover{background:var(--gold-deep)}
+  /* ── 標題區（仿 PDF 封面三角） ── */
+  .head{position:relative;text-align:center;padding:clamp(34px,6vw,54px) clamp(18px,4vw,44px) clamp(26px,4.6vw,40px);overflow:hidden}
+  .head::before{content:"";position:absolute;top:0;left:0;border-style:solid;
+    border-width:clamp(54px,10vw,84px) clamp(54px,10vw,84px) 0 0;
+    border-color:var(--navy) transparent transparent transparent}
+  .head::after{content:"";position:absolute;top:0;right:0;border-style:solid;
+    border-width:0 clamp(54px,10vw,84px) clamp(54px,10vw,84px) 0;
+    border-color:transparent var(--gold) transparent transparent}
+  .head .en{font-family:var(--serif);color:var(--gold-deep);letter-spacing:.26em;
+    font-size:clamp(8.5px,1.6vw,11px);text-transform:uppercase;margin-bottom:12px}
+  .head h1{font-family:var(--serif);font-weight:700;color:var(--navy);
+    font-size:clamp(24px,5vw,40px);line-height:1.4;letter-spacing:.02em}
+  .head h1 .g{color:var(--gold-deep)}
+  .head .sub{margin-top:12px;color:var(--ink-2);font-size:clamp(12px,2.4vw,15px);letter-spacing:.04em}
+  .head .sub b{color:var(--navy)}
+  .grule{position:relative;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));
+    width:min(240px,60%);margin:16px auto 0;border-radius:2px}
+  .grule::before,.grule::after{content:"";position:absolute;top:50%;width:8px;height:8px;
+    background:var(--gold);transform:translateY(-50%) rotate(45deg)}
+  .grule::before{left:-3px}
+  .grule::after{right:-3px}
 
-  /* ── Hero ── */
-  .hero{
-    position:relative;overflow:hidden;background:var(--navy);color:#fff;
-    padding:clamp(80px,14vh,150px) 0 clamp(70px,11vh,120px);
+  /* ── 區塊標籤 ── */
+  .band-label{
+    display:flex;align-items:center;gap:12px;margin-bottom:clamp(14px,2.6vw,20px);
   }
-  .hero::before{
-    content:"";position:absolute;top:0;right:0;border-style:solid;
-    border-width:0 clamp(160px,26vw,360px) clamp(160px,26vw,360px) 0;
-    border-color:transparent rgba(197,162,83,.32) transparent transparent;
+  .band-label::before,.band-label::after{content:"";flex:1;height:1.5px;background:var(--gold-soft)}
+  .band-label span{
+    font-family:var(--serif);font-weight:700;color:var(--navy);
+    font-size:clamp(15px,3vw,20px);letter-spacing:.14em;white-space:nowrap;
   }
-  .hero::after{
-    content:"";position:absolute;bottom:0;left:0;border-style:solid;
-    border-width:clamp(120px,20vw,280px) 0 0 clamp(120px,20vw,280px);
-    border-color:transparent transparent transparent rgba(197,162,83,.16);
-  }
-  .hero-inner{position:relative;z-index:2;text-align:center}
-  .hero .en{
-    font-family:var(--serif);color:var(--gold);letter-spacing:.32em;
-    font-size:clamp(10px,1.1vw,14px);text-transform:uppercase;margin-bottom:18px;
-  }
-  .hero h1{font-size:clamp(30px,5.2vw,60px);line-height:1.35;letter-spacing:.03em}
-  .hero h1 .gold-txt{color:var(--gold)}
-  .hero .sub{
-    font-size:clamp(15px,1.8vw,21px);color:#d7dee8;margin-top:20px;letter-spacing:.06em;
-  }
-  .hero .sub b{color:var(--gold);font-weight:800}
-  .hero-cta{margin-top:36px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-  .btn{
-    display:inline-block;text-decoration:none;font-weight:800;font-size:clamp(14px,1.4vw,16px);
-    padding:15px 40px;border-radius:4px;letter-spacing:.1em;transition:.25s;
-  }
-  .btn-gold{background:var(--gold);color:var(--navy-deep);border:2px solid var(--gold)}
-  .btn-gold:hover{background:var(--gold-soft);border-color:var(--gold-soft)}
-  .btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5)}
-  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
-  .hero-chips{margin-top:34px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .chip{
-    font-size:clamp(11px,1.05vw,13px);color:#d7dee8;border:1px solid rgba(197,162,83,.5);
-    border-radius:999px;padding:6px 16px;letter-spacing:.05em;
-  }
-  .chip b{color:var(--gold)}
+  .band-label span b{color:var(--gold-deep)}
 
-  /* ── 機遇三卡（深藍區） ── */
-  .opp{background:rgba(255,255,255,.05);border:1px solid rgba(197,162,83,.4);border-radius:10px;
-    padding:clamp(20px,2.6vw,32px);text-align:center}
-  .opp .n{font-family:var(--serif);font-size:clamp(30px,3.8vw,50px);color:var(--gold);font-weight:700;line-height:1.25}
-  .opp .t{font-size:clamp(13px,1.3vw,15px);color:#e8ecf2;margin-top:8px;font-weight:600}
-  .opp .c{font-size:clamp(11px,1.1vw,13px);color:var(--steel);margin-top:4px}
-  .urgency{
-    margin-top:clamp(26px,4vh,40px);text-align:center;
-    font-family:var(--serif);font-size:clamp(16px,2vw,24px);color:#fff;line-height:1.7;
-  }
-  .urgency b{color:var(--gold)}
+  section{padding:clamp(20px,4vw,32px) clamp(18px,4vw,44px)}
+  .sec-navy{background:var(--navy);color:#fff}
+  .sec-navy .band-label span{color:#fff}
+  .sec-navy .band-label span b{color:var(--gold)}
+  .sec-navy .band-label::before,.sec-navy .band-label::after{background:rgba(197,162,83,.45)}
+  .sec-tint{background:#f5f7fa}
 
-  /* ── 佈局方向卡 ── */
-  .engine{
-    background:var(--paper);border:1px solid var(--hairline);border-top:4px solid var(--gold);
-    border-radius:10px;padding:clamp(20px,2.4vw,30px);text-align:center;
-    box-shadow:0 6px 24px rgba(45,59,77,.07);transition:transform .3s;
-  }
-  .engine:hover{transform:translateY(-6px)}
-  .engine .ico{font-size:clamp(30px,3.2vw,40px);line-height:1}
-  .engine .t{font-family:var(--serif);font-size:clamp(16px,1.7vw,20px);color:var(--navy);font-weight:700;margin-top:12px}
-  .engine .c{font-size:clamp(12.5px,1.2vw,14px);color:var(--ink-2);margin-top:8px}
+  /* ── 機遇三格 ── */
+  .opps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.6vw,16px)}
+  .opp{border:1px solid rgba(197,162,83,.5);border-radius:8px;background:rgba(255,255,255,.05);
+    text-align:center;padding:clamp(12px,2.2vw,18px) 8px}
+  .opp .n{font-family:var(--serif);font-weight:700;color:var(--gold);
+    font-size:clamp(17px,3.6vw,28px);line-height:1.2;white-space:nowrap}
+  .opp .t{font-size:clamp(10px,1.9vw,13px);color:#e8ecf2;margin-top:5px;font-weight:600}
+  .opp .c{font-size:clamp(9px,1.7vw,11.5px);color:var(--steel);margin-top:2px}
+  .urgency{text-align:center;margin-top:clamp(14px,2.6vw,20px);
+    font-family:var(--serif);font-weight:700;color:var(--gold);
+    font-size:clamp(14px,2.8vw,19px);letter-spacing:.06em}
 
-  /* ── 信任（印信卡） ── */
-  .shield{
-    position:relative;background:var(--paper);border:1px solid var(--hairline);border-radius:10px;
-    padding:clamp(26px,3vw,38px) clamp(20px,2.4vw,32px) clamp(22px,2.6vw,32px);
-    text-align:center;box-shadow:0 6px 24px rgba(45,59,77,.06);
-    transition:transform .35s,box-shadow .35s,border-color .35s;overflow:hidden;
-  }
-  .shield::after{                       /* 證書式內框 */
-    content:"";position:absolute;inset:8px;border:1px solid rgba(197,162,83,.35);
-    border-radius:6px;pointer-events:none;transition:border-color .35s;
-  }
-  .shield:hover{transform:translateY(-8px);box-shadow:0 16px 40px rgba(45,59,77,.14);border-color:var(--gold)}
-  .shield:hover::after{border-color:var(--gold)}
-  .shield .ghost{                       /* 背景大數字 */
-    position:absolute;top:2px;right:12px;font-family:var(--serif);font-weight:700;
-    font-size:clamp(52px,5.6vw,76px);line-height:1;color:rgba(45,59,77,.06);
-  }
-  .seal{                                /* 金色菱形印信 */
-    width:58px;height:58px;margin:0 auto 18px;border:2px solid var(--gold);
-    transform:rotate(45deg);display:flex;align-items:center;justify-content:center;
+  /* ── 業務三欄 ── */
+  .biz{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.6vw,16px)}
+  .bz{border:1px solid var(--hairline);border-top:3px solid var(--gold);border-radius:8px;
+    background:var(--paper);text-align:center;padding:clamp(12px,2.2vw,18px) 10px;
+    box-shadow:0 3px 12px rgba(45,59,77,.06)}
+  .bz .ico{font-size:clamp(20px,3.6vw,28px);line-height:1}
+  .bz .t{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:clamp(12px,2.4vw,16px);margin-top:7px}
+  .bz .c{font-size:clamp(9.5px,1.8vw,12px);color:var(--ink-2);margin-top:4px}
+
+  /* ── 信任四印 ── */
+  .seals{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,1.6vw,14px)}
+  .sl{text-align:center}
+  .sl .seal{width:clamp(38px,7vw,50px);height:clamp(38px,7vw,50px);margin:0 auto 10px;
+    border:2px solid var(--gold);transform:rotate(45deg);
+    display:flex;align-items:center;justify-content:center;
     background:linear-gradient(135deg,rgba(197,162,83,.14),rgba(197,162,83,.02));
-    box-shadow:0 0 0 4px rgba(197,162,83,.14);
-  }
-  .seal span{
-    transform:rotate(-45deg);font-family:var(--serif);font-weight:700;
-    font-size:24px;color:var(--gold-deep);
-  }
-  .shield h3{font-size:clamp(16px,1.65vw,20px);color:var(--navy);letter-spacing:.06em}
-  .shield h3 b{color:var(--gold-deep)}
-  .shield .sub-en{
-    font-family:var(--serif);font-size:10.5px;letter-spacing:.24em;color:var(--muted);
-    text-transform:uppercase;margin-top:2px;
-  }
-  .shield p{font-size:clamp(12.5px,1.2vw,14.5px);color:var(--ink-2);margin-top:12px;text-align:left}
-  .shield p b{color:var(--navy)}
-  .trust-band{
-    margin-top:clamp(22px,3.4vh,36px);background:var(--navy);border-radius:10px;color:#d7dee8;
-    display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,2.6vw,40px);
-    padding:clamp(14px,1.8vw,20px) clamp(16px,2vw,28px);
-    font-size:clamp(12px,1.15vw,14px);font-weight:600;
-  }
-  .trust-band span::before{content:"✦";color:var(--gold);margin-right:8px}
+    box-shadow:0 0 0 3px rgba(197,162,83,.14)}
+  .sl .seal span{transform:rotate(-45deg);font-family:var(--serif);font-weight:700;
+    font-size:clamp(15px,2.8vw,20px);color:var(--gold-deep)}
+  .sl .t{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:clamp(11.5px,2.2vw,15px)}
+  .sl .c{font-size:clamp(9px,1.7vw,11.5px);color:var(--ink-2);margin-top:2px}
 
-  /* ── 實績（深藍大數字帶） ── */
-  .record{
-    background:var(--navy);color:#fff;position:relative;overflow:hidden;
-  }
-  .record::before{
-    content:"";position:absolute;top:0;right:0;border-style:solid;
-    border-width:0 clamp(120px,18vw,240px) clamp(120px,18vw,240px) 0;
-    border-color:transparent rgba(197,162,83,.22) transparent transparent;
-  }
-  .record::after{
-    content:"";position:absolute;bottom:0;left:0;border-style:solid;
-    border-width:clamp(90px,14vw,190px) 0 0 clamp(90px,14vw,190px);
-    border-color:transparent transparent transparent rgba(197,162,83,.12);
-  }
-  .record .z{position:relative;z-index:2}
-  .bigstats{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3.4vw,52px);
-    margin-top:clamp(30px,5vh,54px);
-  }
-  @media(max-width:900px){.bigstats{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:540px){.bigstats{grid-template-columns:1fr}}
-  .bigstat{text-align:center}
-  .bigstat .ico{font-size:clamp(22px,2.2vw,28px);opacity:.9}
-  .bigstat .n{
-    font-family:var(--serif);font-weight:700;line-height:1.15;margin-top:6px;
-    font-size:clamp(44px,6vw,76px);
+  /* ── 實績大數字 ── */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(6px,1.4vw,14px)}
+  .st{text-align:center}
+  .st .n{font-family:var(--serif);font-weight:700;line-height:1.15;
+    font-size:clamp(24px,5vw,42px);
     background:linear-gradient(180deg,#e9d8a8 0%,var(--gold) 55%,var(--gold-deep) 100%);
     -webkit-background-clip:text;background-clip:text;color:transparent;
-    font-variant-numeric:tabular-nums;
-  }
-  .bigstat .n small{font-size:.5em}
-  .bigstat .bar{position:relative;height:2.5px;background:var(--gold);margin:12px auto 10px;width:72%}
-  .bigstat .bar::before,.bigstat .bar::after{
-    content:"";position:absolute;top:50%;width:8px;height:8px;background:var(--gold);
-    transform:translateY(-50%) rotate(45deg);
-  }
-  .bigstat .bar::before{left:-3px}
-  .bigstat .bar::after{right:-3px}
-  .bigstat .t{font-size:clamp(12px,1.2vw,14.5px);color:#d7dee8;font-weight:600}
-  .team-tags{
-    margin-top:clamp(30px,5vh,50px);display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
-  }
-  .team-tags .tag{
-    font-size:clamp(12px,1.2vw,14px);color:#e8ecf2;border:1px solid rgba(197,162,83,.5);
-    border-radius:999px;padding:8px 22px;letter-spacing:.06em;
-  }
-  .team-tags .tag b{color:var(--gold)}
+    font-variant-numeric:tabular-nums;white-space:nowrap}
+  .st .n small{font-size:.5em}
+  .st .bar{position:relative;height:2px;background:var(--gold);margin:8px auto 6px;width:70%}
+  .st .bar::before,.st .bar::after{content:"";position:absolute;top:50%;width:6px;height:6px;
+    background:var(--gold);transform:translateY(-50%) rotate(45deg)}
+  .st .bar::before{left:-2px}
+  .st .bar::after{right:-2px}
+  .st .t{font-size:clamp(9px,1.8vw,12px);color:#d7dee8;font-weight:600}
+  .tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:clamp(12px,2.4vw,18px)}
+  .tags .tag{font-size:clamp(9px,1.8vw,12px);color:#e8ecf2;border:1px solid rgba(197,162,83,.5);
+    border-radius:999px;padding:4px 14px}
+  .tags .tag b{color:var(--gold)}
 
-  /* ── 禮遇 ── */
-  .perk{
-    background:var(--paper);border:1px solid var(--hairline);border-radius:10px;text-align:center;
-    padding:clamp(20px,2.4vw,30px);box-shadow:0 6px 24px rgba(45,59,77,.06);
-  }
-  .perk .ico{font-size:clamp(28px,3vw,38px);line-height:1}
-  .perk .t{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:clamp(14px,1.45vw,17px);margin-top:10px}
-  .perk .c{font-size:clamp(11.5px,1.1vw,13px);color:var(--ink-2);margin-top:4px}
+  /* ── 禮遇列 ── */
+  .perks{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(6px,1.4vw,14px)}
+  .pk{text-align:center;border:1px solid var(--hairline);border-radius:8px;background:var(--paper);
+    padding:clamp(10px,2vw,16px) 6px;box-shadow:0 3px 12px rgba(45,59,77,.05)}
+  .pk .ico{font-size:clamp(18px,3.2vw,26px);line-height:1}
+  .pk .t{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:clamp(10.5px,2vw,14px);margin-top:6px}
+  .pk .c{font-size:clamp(8.5px,1.6vw,11px);color:var(--ink-2);margin-top:2px}
 
-  /* ── 最終 CTA ── */
-  .final{
-    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);
-    color:#fff;text-align:center;position:relative;overflow:hidden;
-  }
-  .final::before{
-    content:"";position:absolute;top:0;right:0;border-style:solid;
-    border-width:0 clamp(140px,20vw,260px) clamp(140px,20vw,260px) 0;
-    border-color:transparent rgba(197,162,83,.3) transparent transparent;
-  }
-  .final::after{
-    content:"";position:absolute;bottom:0;left:0;border-style:solid;
-    border-width:clamp(110px,16vw,220px) 0 0 clamp(110px,16vw,220px);
-    border-color:transparent transparent transparent rgba(197,162,83,.16);
-  }
-  .final .z{position:relative;z-index:2}
+  /* ── CTA ── */
+  .cta{position:relative;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:#fff;text-align:center;overflow:hidden;
+    padding:clamp(26px,5vw,42px) clamp(18px,4vw,44px)}
+  .cta::before{content:"";position:absolute;top:0;right:0;border-style:solid;
+    border-width:0 clamp(60px,11vw,96px) clamp(60px,11vw,96px) 0;
+    border-color:transparent rgba(197,162,83,.3) transparent transparent}
+  .cta::after{content:"";position:absolute;bottom:0;left:0;border-style:solid;
+    border-width:clamp(46px,9vw,76px) 0 0 clamp(46px,9vw,76px);
+    border-color:transparent transparent transparent rgba(197,162,83,.16)}
+  .cta .z{position:relative;z-index:2}
+  .cta h2{font-family:var(--serif);font-weight:700;font-size:clamp(20px,4.4vw,32px);line-height:1.4}
+  .cta h2 .g{color:var(--gold)}
+  .cta .line{margin-top:10px;color:#d7dee8;font-size:clamp(11px,2.2vw,14px)}
+  .btn{display:inline-block;text-decoration:none;background:var(--gold);color:var(--navy-deep);
+    font-weight:800;font-size:clamp(13px,2.6vw,16px);padding:12px 40px;border-radius:4px;
+    letter-spacing:.1em;margin-top:18px;transition:.25s}
+  .btn:hover{background:var(--gold-soft)}
+  .cta .brand{margin-top:20px;font-family:var(--serif);letter-spacing:.26em;color:var(--gold);
+    font-size:clamp(9px,1.8vw,12px)}
 
-  footer{background:var(--navy-deep);color:var(--steel);font-size:11.5px;padding:26px 0;text-align:center;line-height:1.9}
-  footer .gold{color:var(--gold)}
+  /* ── 底帶 ── */
+  .footbar{background:var(--navy-deep);color:var(--steel);text-align:center;
+    font-size:clamp(8.5px,1.6vw,10.5px);line-height:1.8;padding:14px clamp(16px,3vw,28px)}
+  .footbar .gold{color:var(--gold)}
+
+  .note-s{font-size:clamp(8.5px,1.6vw,10.5px);color:var(--muted);text-align:center;margin-top:12px}
+  .sec-navy .note-s{color:var(--steel)}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="nav">
+<div class="poster">
+
+  <!-- 頂帶 -->
+  <div class="topbar">
     <div class="logo">瑞澤亞洲<em>富裕資本</em>有限合夥</div>
-    <a class="nav-cta" href="#contact">預約專屬說明</a>
+    <div class="conf">CONFIDENTIAL</div>
   </div>
-</header>
 
-<!-- ═══ HERO ═══ -->
-<div class="hero">
-  <div class="wrap hero-inner">
+  <!-- 標題 -->
+  <div class="head">
     <div class="en">Atlas Asia Wealth Capital Limited Partnership</div>
-    <h1>當全球聰明錢湧入日本，<br>您的資產<span class="gold-txt">跟上了嗎？</span></h1>
+    <h1>當全球聰明錢湧入日本，<br>您的資產<span class="g">跟上了嗎？</span></h1>
+    <div class="grule"></div>
     <div class="sub">台日不動產替代資產｜<b>星波國際 × 瑞澤資本</b> 共同管理</div>
-    <div class="hero-cta">
-      <a class="btn btn-gold" href="#contact">預約專屬說明</a>
-      <a class="btn btn-ghost" href="#window">先了解機遇</a>
-    </div>
-    <div class="hero-chips">
-      <span class="chip">依《有限合夥法》<b>合法設立</b></span>
-      <span class="chip">台日雙市場<b>在地深耕</b></span>
-      <span class="chip">營運資訊<b>透明揭露</b></span>
-    </div>
-    <p class="note" style="text-align:center;margin-top:30px">僅提供特定人內部參考｜未經授權請勿轉發或複製</p>
   </div>
-</div>
 
-<!-- ═══ 機遇＋緊迫感（深藍） ═══ -->
-<section class="sec-dark" id="window">
-  <div class="wrap" style="text-align:center">
-    <div class="eyebrow">A Once-in-Decades Window</div>
-    <h2>三個訊號，指向同一個<span class="gd">進場窗口</span></h2>
-    <div class="gold-rule center"></div>
-    <div class="grid g3" style="margin-top:clamp(28px,5vh,46px)">
+  <!-- 機遇（深藍帶） -->
+  <section class="sec-navy">
+    <div class="band-label"><span>三個訊號，同一個<b>進場窗口</b></span></div>
+    <div class="opps">
       <div class="opp reveal">
         <div class="n">53 年低點</div>
-        <div class="t">日圓實際有效匯率</div>
-        <div class="c">同一棟建物，現在買比三年前便宜近三成</div>
+        <div class="t">日圓匯率</div>
+        <div class="c">比三年前便宜近三成</div>
       </div>
       <div class="opp reveal">
         <div class="n">4,268 萬</div>
-        <div class="t">2025 訪日旅客創歷史新高</div>
-        <div class="c">住宿消費為成長最快的旅遊消費類別</div>
+        <div class="t">訪日旅客創新高</div>
+        <div class="c">住宿消費成長最快</div>
       </div>
       <div class="opp reveal">
         <div class="n">全球第一</div>
-        <div class="t">東京不動產投資金額超越紐約</div>
-        <div class="c">Blackstone、PAG 等國際機構已大舉佈局日本旅館資產</div>
+        <div class="t">東京不動產投資額</div>
+        <div class="c">國際機構大舉佈局</div>
       </div>
     </div>
-    <div class="urgency reveal">
-      旅遊需求進入結構性高原、合法旅宿牌照日益稀缺、國際資本持續湧入——<br>
-      <b>最好的位置，永遠留給提早佈局的人。</b>
-    </div>
-    <p class="note" style="text-align:center">以上為管理團隊市場觀察與公開市場數據，未來變化難以預測。</p>
-  </div>
-</section>
+    <div class="urgency reveal">最好的位置，永遠留給提早佈局的人。</div>
+    <p class="note-s">公開市場數據與團隊觀察，非投資保證</p>
+  </section>
 
-<!-- ═══ 佈局方向 ═══ -->
-<section class="sec-tint">
-  <div class="wrap">
-    <div class="eyebrow">What We Do</div>
-    <h2>深耕台日雙市場的<span class="gd">旅宿資產專家</span></h2>
-    <p class="lead">不必親赴日本看房、不必研究法規牌照——由深耕台日雙市場的專業團隊，為您把關每一個標的。</p>
-    <div class="grid g3" style="margin-top:clamp(26px,4vh,42px)">
-      <div class="engine reveal">
+  <!-- 業務 -->
+  <section>
+    <div class="band-label"><span>台日雙市場<b>旅宿資產專家</b></span></div>
+    <div class="biz">
+      <div class="bz reveal">
         <div class="ico">🏨</div>
         <div class="t">日本旅館營運</div>
-        <div class="c">聚焦東京核心區合法持照旅館，365 天全年營運，站上訪日觀光的結構性浪潮</div>
+        <div class="c">東京核心區合法持照<br>全年營運</div>
       </div>
-      <div class="engine reveal">
+      <div class="bz reveal">
         <div class="ico">🛠️</div>
         <div class="t">台日民宿改裝</div>
-        <div class="c">從選址、設計到品牌化營運一條龍，複製自營精品民宿的高住房率方程式</div>
+        <div class="c">選址到品牌化營運<br>一條龍打造</div>
       </div>
-      <div class="engine reveal">
+      <div class="bz reveal">
         <div class="ico">🔑</div>
         <div class="t">不動產資產活化</div>
-        <div class="c">嚴選具價值空間的物件，快速整理、合規查核，鎖定明確去化管道</div>
+        <div class="c">嚴選折價物件<br>快速整理去化</div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ 信任 ═══ -->
-<section>
-  <div class="wrap">
-    <div class="eyebrow">Why Trust Us</div>
-    <h2>把「安心」寫進<span class="gd">制度裡</span></h2>
-    <p class="lead">信任不該靠口頭承諾，而是靠制度設計。四道防線，環環相扣。</p>
-    <div class="gold-rule"></div>
-    <div class="grid g4" style="margin-top:clamp(26px,4vh,42px)">
-      <div class="shield reveal">
-        <div class="ghost">01</div>
+  <!-- 信任（淺灰帶） -->
+  <section class="sec-tint">
+    <div class="band-label"><span>把「安心」寫進<b>制度裡</b></span></div>
+    <div class="seals">
+      <div class="sl reveal">
         <div class="seal"><span>法</span></div>
-        <h3>合法<b>架構</b></h3>
-        <div class="sub-en">Legal Structure</div>
-        <p>依台灣<b>《有限合夥法》</b>設立登記，權責分明的正式合夥組織——與國際私募基金同等級的法律架構。</p>
+        <div class="t">合法架構</div>
+        <div class="c">《有限合夥法》<br>設立登記</div>
       </div>
-      <div class="shield reveal">
-        <div class="ghost">02</div>
+      <div class="sl reveal">
         <div class="seal"><span>督</span></div>
-        <h3>獨立<b>監督</b></h3>
-        <div class="sub-en">Independent Oversight</div>
-        <p>共同管理人互為制衡，任何關聯交易均須<b>書面核准</b>始得執行——沒有一個人能單獨動用資源。</p>
+        <div class="t">獨立監督</div>
+        <div class="c">關聯交易<br>書面核准</div>
       </div>
-      <div class="shield reveal">
-        <div class="ghost">03</div>
+      <div class="sl reveal">
         <div class="seal"><span>明</span></div>
-        <h3>透明<b>揭露</b></h3>
-        <div class="sub-en">Full Transparency</div>
-        <p><b>每季</b>書面營運報告，年度財務報表由<b>獨立會計師</b>編製審核——您隨時看得見營運全貌。</p>
+        <div class="t">透明揭露</div>
+        <div class="c">季報＋獨立<br>會計師年審</div>
       </div>
-      <div class="shield reveal">
-        <div class="ghost">04</div>
+      <div class="sl reveal">
         <div class="seal"><span>遵</span></div>
-        <h3>法遵<b>優先</b></h3>
-        <div class="sub-en">Compliance First</div>
-        <p>每一個標的均先完成<b>產權與牌照合規查核</b>才會推進——不碰灰色地帶，是我們的底線。</p>
+        <div class="t">法遵優先</div>
+        <div class="c">先合規查核<br>才推進標的</div>
       </div>
     </div>
-    <div class="trust-band reveal">
-      <span>有限合夥法設立登記</span>
-      <span>關聯交易書面核准</span>
-      <span>季報制度</span>
-      <span>獨立會計師年審</span>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ 實績背書 ═══ -->
-<section class="record">
-  <div class="wrap z" style="text-align:center">
-    <div class="eyebrow" style="color:var(--gold)">Track Record</div>
-    <h2 style="color:#fff">不是紙上談兵，是<span class="gd" style="color:var(--gold)">十年實戰</span></h2>
-    <div class="gold-rule center"></div>
-    <div class="bigstats">
-      <div class="bigstat reveal">
-        <div class="ico">🏨</div>
+  <!-- 實績（深藍帶） -->
+  <section class="sec-navy">
+    <div class="band-label"><span>不是紙上談兵，是<b>十年實戰</b></span></div>
+    <div class="stats">
+      <div class="st reveal">
         <div class="n"><span class="count" data-to="8">0</span><small> 間</small></div>
         <div class="bar"></div>
-        <div class="t">日本旅館型不動產交易經驗</div>
+        <div class="t">日本旅館交易經驗</div>
       </div>
-      <div class="bigstat reveal">
-        <div class="ico">🏙️</div>
+      <div class="st reveal">
         <div class="n"><span class="count" data-to="12">0</span><small> 間</small></div>
         <div class="bar"></div>
         <div class="t">台北自營精品民宿</div>
       </div>
-      <div class="bigstat reveal">
-        <div class="ico">🗝️</div>
+      <div class="st reveal">
         <div class="n"><span class="count" data-to="88">0</span><small> %</small></div>
         <div class="bar"></div>
         <div class="t">自營民宿平均住房率</div>
       </div>
-      <div class="bigstat reveal">
-        <div class="ico">⭐</div>
+      <div class="st reveal">
         <div class="n"><span class="count" data-to="9.8" data-dec="1">0</span><small> 分</small></div>
         <div class="bar"></div>
         <div class="t">Booking.com 旅客評分</div>
       </div>
     </div>
-    <div class="team-tags reveal">
+    <div class="tags reveal">
       <span class="tag">新加坡<b>家族辦公室</b>背景</span>
-      <span class="tag">台日<b>跨境旅宿地產</b>實戰</span>
-      <span class="tag">離岸基金<b>跨境架構</b>經驗</span>
+      <span class="tag">台日<b>跨境旅宿</b>實戰</span>
+      <span class="tag">離岸基金<b>跨境架構</b></span>
     </div>
-    <p class="note" style="text-align:center">以上為管理團隊歷史運營實績，屬歷史數據，不代表未來表現。團隊詳細背景將於專屬說明中介紹。</p>
-  </div>
-</section>
+    <p class="note-s">歷史實績不代表未來表現</p>
+  </section>
 
-<!-- ═══ 專屬禮遇 ═══ -->
-<section>
-  <div class="wrap" style="text-align:center">
-    <div class="eyebrow">Partner Privileges</div>
-    <h2>成為合夥人，日本就是<span class="gd">您的後院</span></h2>
-    <p class="lead" style="margin-left:auto;margin-right:auto">合夥人專屬年度禮遇，讓您親身體驗自家旅宿資產的營運品質。</p>
-    <div class="grid g4" style="margin-top:clamp(26px,4vh,42px)">
-      <div class="perk reveal">
+  <!-- 禮遇 -->
+  <section>
+    <div class="band-label"><span>成為合夥人，日本就是<b>您的後院</b></span></div>
+    <div class="perks">
+      <div class="pk reveal">
         <div class="ico">🏨</div>
         <div class="t">東京旅館住宿</div>
-        <div class="c">用旅人的角度，親自體驗團隊營運的東京旅宿</div>
+        <div class="c">親身體驗自家旅宿</div>
       </div>
-      <div class="perk reveal">
+      <div class="pk reveal">
         <div class="ico">🚐</div>
         <div class="t">日本專屬包車</div>
-        <div class="c">東京／大阪專車接送與單日包車服務</div>
+        <div class="c">東京／大阪專車</div>
       </div>
-      <div class="perk reveal">
+      <div class="pk reveal">
         <div class="ico">♨️</div>
-        <div class="t">北投溫泉渡假村</div>
-        <div class="c">在房間即可享受溫泉的療癒時光</div>
+        <div class="t">北投溫泉</div>
+        <div class="c">房內即享溫泉</div>
       </div>
-      <div class="perk reveal">
+      <div class="pk reveal">
         <div class="ico">🏡</div>
         <div class="t">宜蘭包棟民宿</div>
-        <div class="c">自營精品民宿整棟包場，家庭聚會首選</div>
+        <div class="c">整棟包場</div>
       </div>
     </div>
-    <p class="note">禮遇內容屬合夥人福利，詳細兌換方式以合夥文件為準。</p>
-  </div>
-</section>
+    <p class="note-s">合夥人專屬年度禮遇，詳以合夥文件為準</p>
+  </section>
 
-<!-- ═══ 最終 CTA ═══ -->
-<section class="final" id="contact">
-  <div class="wrap z">
-    <div class="eyebrow" style="color:var(--gold)">By Invitation</div>
-    <h2>好的機會，<span class="gd">值得當面聊</span></h2>
-    <p style="margin-top:18px;color:#d7dee8;font-size:clamp(14px,1.5vw,17px)">
-      名額有限，僅開放特定人參與。<br>請洽您的專屬顧問，安排一對一說明。
-    </p>
-    <div class="hero-cta" style="margin-top:34px">
-      <a class="btn btn-gold" href="#contact">預約專屬說明</a>
+  <!-- CTA -->
+  <div class="cta">
+    <div class="z">
+      <h2>好的機會，<span class="g">值得當面聊</span></h2>
+      <div class="line">名額有限，僅開放特定人參與｜請洽您的專屬顧問</div>
+      <a class="btn" href="#">預約專屬說明</a>
+      <div class="brand">ATLAS ASIA WEALTH CAPITAL</div>
     </div>
-    <div class="gold-rule center" style="margin-top:38px"></div>
-    <p style="margin-top:18px;font-family:var(--serif);letter-spacing:.28em;color:var(--gold);font-size:clamp(11px,1.1vw,14px)">ATLAS ASIA WEALTH CAPITAL</p>
   </div>
-</section>
 
-<footer>
-  <div class="wrap">
-    本頁面僅供特定人內部參考，不構成公開招募、要約或任何形式之推介，亦不得對外轉發或複製。<br>
-    所載市場數據為公開資訊與管理團隊觀察，歷史實績不代表未來表現。詳細內容以正式文件為準，並建議諮詢獨立專業顧問。<br>
-    <span class="gold">CONFIDENTIAL</span>｜© 2026 瑞澤亞洲富裕資本有限合夥｜星波國際 × 瑞澤資本 共同管理
+  <!-- 底帶 -->
+  <div class="footbar">
+    本頁面僅供特定人參考，不構成公開招募或要約；歷史實績不代表未來表現，詳情以正式文件為準。<br>
+    <span class="gold">CONFIDENTIAL</span>｜© 2026 瑞澤亞洲富裕資本有限合夥
   </div>
-</footer>
+
+</div>
 
 <script>
 (function(){
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  },{threshold:.15});
+  },{threshold:.2});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
-  /* 實績數字滾動動畫 */
   function countUp(el){
     var to = parseFloat(el.dataset.to), dec = parseInt(el.dataset.dec||'0',10);
-    var dur = 1400, t0 = null;
+    var dur = 1200, t0 = null;
     function tick(t){
       if(!t0) t0 = t;
       var p = Math.min((t - t0)/dur, 1);
